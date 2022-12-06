@@ -1,3 +1,8 @@
+//Dynamic rendering into pug file.
+
+//Only updated files ->
+
+// /views/shop.pug =>
 <!DOCTYPE html>
 html(lang="en")
     head
@@ -34,3 +39,27 @@ html(lang="en")
                                 button.btn Add to Cart
             else
                 h1 No Products
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Minor changes of passing data in key-value pair in shop.js =>
+
+const path = require("path");
+
+const express = require("express");
+
+const rootDir = require("../util/path");
+const adminData = require("./admin");
+
+const router = express.Router();
+
+router.get("/", (req, res, next) => {
+  const products = adminData.products;
+  res.render("shop", { prods: products, docTitle: "Shop" });
+  //This is how we pass data to the template engine to be rendered dynamically
+  //Now this products data is available in the shop.pug file as prods.
+  //This is the standard syntax - In key-value pairs, thats how we pass the data to the template engine
+});
+
+module.exports = router;
