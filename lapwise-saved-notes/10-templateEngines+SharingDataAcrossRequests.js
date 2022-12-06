@@ -1,7 +1,5 @@
 // Template engines start & sharing data across requests/users
 
-const { application } = require("express");
-
 // A lot of modified files.
 // Multiple files are modified and hence only putting important modifications here.
 
