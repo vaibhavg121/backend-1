@@ -1,3 +1,5 @@
+//res.send() - Internal Working :-
+
 const express = require("express");
 const app = express();
 
