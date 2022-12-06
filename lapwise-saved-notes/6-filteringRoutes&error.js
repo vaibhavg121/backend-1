@@ -1,5 +1,3 @@
-//Route-filtering and error for invalid route
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
@@ -10,7 +8,8 @@ const shopRoutes = require("./routes/shop");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//Outsourced Routes:
+//Now all the routes inside aminRoutes will implement after "/admin" only
+//Bcz we are explicitely specifying it to use it next to "/admin/------"
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
