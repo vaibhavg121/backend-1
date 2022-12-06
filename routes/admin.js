@@ -6,15 +6,19 @@ const rootDir = require("../util/path");
 
 const router = express.Router();
 
+const products = [];
+
 router.get("/add-product", (req, res, next) => {
   res.sendFile(path.join(rootDir, "views", "add-product.html"));
 });
-//Replacing ( __dirname,"../" ) with rootDir.
-//It's nothing but the path that we exported from utils folder.
 
 router.post("/add-product", (req, res, next) => {
-  console.log(req.body);
+  products.push({ title: req.body.title });
   res.redirect("/");
 });
+//The same {title: inputDataFromForm} data is being pushed to the products array
+//Which we were just console.logging previously.
 
-module.exports = router;
+exports.routes = router;
+exports.products = products;
+//Named exports with dot notation to be used as a part of object later

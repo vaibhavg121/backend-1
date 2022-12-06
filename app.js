@@ -1,23 +1,24 @@
-//Serving static files with express.static
-
 const path = require("path");
 
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 
-const adminRoutes = require("./routes/admin");
+app.set("view engine", "pug");
+app.set("views", "views");
+//app.set(name, value) -> This is the default syntax of app.set()
+//This method sets a "setting-name" to a "value"
+
+const adminData = require("./routes/admin");
 
 const shopRoutes = require("./routes/shop");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, "public")));
-//in-built middleware provided by express to serve static files.
-//We just need to provide the directory name.
-//It only provides Reading access.
 
-app.use("/admin", adminRoutes);
+app.use("/admin", adminData.routes);
+//As it was object-dot exports in admin.js, we need to use the dot notation here as well
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
