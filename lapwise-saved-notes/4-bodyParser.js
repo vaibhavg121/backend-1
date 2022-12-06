@@ -1,4 +1,4 @@
-//BodyParser
+//bodyparser to read POST data.
 
 const express = require("express");
 const bodyParser = require("body-parser");
