@@ -1,3 +1,31 @@
+//Creating Models to separate data from logic.
+
+//Step-by-step commits to understand it better.
+
+//Small initial commit.
+
+// Updated files =>
+
+// models/product.js =>
+const products = [];
+
+module.exports = class Product {
+  constructor(t) {
+    this.title = t;
+  }
+
+  save() {
+    products.push(this);
+  }
+
+  static fetchAll() {
+    return products;
+  }
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+// controllers/products.js =>
 const Product = require("../models/product");
 
 exports.getAddProduct = (req, res, next) => {
