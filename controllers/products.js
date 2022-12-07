@@ -11,23 +11,20 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
-  //removed products.push from here, bcz we are now creating separate model for it
-  //And now creating an instance of that imported class :-
   const product = new Product(req.body.title);
   product.save();
   res.redirect("/");
 };
 
 exports.getProducts = (req, res, next) => {
-  //Importing that static method from the class again to fetch products:-
-  const products = Product.fetchAll();
-
-  res.render("shop", {
-    prods: products,
-    pageTitle: "Shop",
-    path: "/",
-    hasProducts: products.length > 0,
-    activeShop: true,
-    productCSS: true,
+  Product.fetchAll((products) => {
+    res.render("shop", {
+      prods: products,
+      pageTitle: "Shop",
+      path: "/",
+      hasProducts: products.length > 0,
+      activeShop: true,
+      productCSS: true,
+    });
   });
 };
