@@ -8,8 +8,15 @@ const router = express.Router();
 
 const products = [];
 
+//Rendering this file add-products & declaring the key-value pairs which values will be dynamically used inside the templating engine files.
 router.get("/add-product", (req, res, next) => {
-  res.sendFile(path.join(rootDir, "views", "add-product.html"));
+  res.render("add-product", {
+    pageTitle: "Add Product",
+    path: "/admin/add-product",
+    formsCSS: true,
+    productCSS: true,
+    activeAddProduct: true,
+  });
 });
 
 router.post("/add-product", (req, res, next) => {
